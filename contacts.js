@@ -28,8 +28,12 @@ async function getContactById(contactId) {
     const filteredContact = contacts.find(
       (contact) => contact.id === contactId.toString()
     );
-    await writeDataInFile(filteredContact);
-    return filteredContact;
+    if (filteredContact) {
+      await writeDataInFile(filteredContact);
+      return filteredContact;
+    } else {
+      return null;
+    }
   } catch (error) {
     console.error(error);
   }
